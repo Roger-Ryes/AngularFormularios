@@ -38,3 +38,6 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction/
     ng g c share/sidemenu --skipTests -is
 <h1>Generar Modulo y Routing</h1>
     ng g m template --routing
+
+## Lazy loading
+ref: https://angular.io/guide/lazy-loading-ngmodules
