@@ -32,11 +32,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 https://getbootstrap.com/docs/5.1/getting-started/introduction/
 
 ## Comandos usados
-<h1>Generar Modulo</h1>
+# Generar Modulo
     ng g m share  
-<h1>Generar Componente</h1>
+# Generar Componente
     ng g c share/sidemenu --skipTests -is
-<h1>Generar Modulo y Routing</h1>
+# Generar Modulo y Routing
     ng g m template --routing
 
 ## Lazy loading
@@ -66,7 +66,7 @@ ref: https://angular.io/guide/lazy-loading-ngmodules
 
 ## ViewChild
     Toma un elemento del local
-<h3>TS</h3>
+   # TS
     @ViewChild("myForm") myForm!:NgForm;
-<h3>HTML</h3>
+   # HTML
     <form (ngSubmit)="save()" #myForm="ngForm">
