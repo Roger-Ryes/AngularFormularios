@@ -3,6 +3,8 @@
 <div class="row">
     <div class="col">
         <form (ngSubmit)="save( myForm )" #myForm="ngForm">
+
+            <!-- Campo de producto -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
@@ -12,11 +14,17 @@
                             name="producto"
                             placeholder="Nombre del producto"
                             autocomplete="off"
+
+                            minlength="3"
                             required>
-                    <span class="form-text text-danger">Debe de ser de tres letras</span>
+                    <span *ngIf="myForm.controls['producto']?.invalid &&
+                                 myForm.controls['producto']?.touched" 
+                          class="form-text text-danger">
+                          Debe de ser de tres letras</span>
                 </div>
             </div>
             
+
             <!-- Campo de precios -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
@@ -25,10 +33,14 @@
                             class="form-control"
                             ngModel
                             name="precio"
-                            placeholder="Precio del producto">
+                            placeholder="Precio del producto"
+
+                            require
+                            min="0">
                 </div>
             </div>
             
+
             <!-- Campo de existencias -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Existencias</label>
@@ -41,6 +53,7 @@
                 </div>
             </div>
 
+            <!-- buttom -->
             <div class="row">
                 <div class="col">
                     <button type="submit"
@@ -54,11 +67,17 @@
 </div>
 
 
-
 <div class="row">
     <div class="column">
         <span>Valide</span> 
-        <pre>{{myForm.valid}}</pre> <!--Depende del required-->
+        <pre>{{ myForm.valid }}</pre> <!--Depende del required-->
+        
+        <span>Pristine</span>
+        <pre>{{ myForm.pristine }}</pre> <!--No se a cambiado los valores-->
+        
+        <span>Touched</span>
+        <pre>{{ myForm.touched }}</pre><!--Si el user a tocado el formulario-->
+        
         <span>Value</span>
         <pre>{{myForm.value | json}}</pre>
     </div>

@@ -54,3 +54,12 @@ ref: https://angular.io/guide/lazy-loading-ngmodules
             ngModel
             name="producto"
             placeholder="Nombre del producto">
+
+## Condicionales en Formularios
+
+El signo de interrogacion (?) indica que si el valor existe, si no, esperar a que exista
+
+<span *ngIf="myForm.controls['producto']?.invalid &&
+             myForm.controls['producto']?.touched" 
+            class="form-text text-danger">
+Debe de ser de tres letras</span>
