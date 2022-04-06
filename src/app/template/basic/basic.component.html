@@ -17,8 +17,8 @@
 
                             minlength="3"
                             required>
-                    <span *ngIf="productValidate()" 
-                          class="form-text text-danger">
+                    <span class="form-text text-danger"
+                          *ngIf="productValidate()">
                           Debe de ser de tres letras</span>
                 </div>
             </div>
@@ -34,8 +34,11 @@
                             name="precio"
                             placeholder="Precio del producto"
 
-                            require
+                            required
                             min="0">
+                    <span class="form-text text-danger"
+                          *ngIf="priceValidate()">
+                    El precio debe ser 0 o mayor</span>
                 </div>
             </div>
             
@@ -56,7 +59,8 @@
             <div class="row">
                 <div class="col">
                     <button type="submit"
-                            class="btn btn-primary float-end">
+                            class="btn btn-primary float-end"
+                            [disabled]="!myForm.valid">
                         Guardar
                     </button>
                 </div>
@@ -68,6 +72,7 @@
 
 <div class="row">
     <div class="column">
+
         <span>Valide</span> 
         <pre>{{ myForm.valid }}</pre> <!--Depende del required-->
         
