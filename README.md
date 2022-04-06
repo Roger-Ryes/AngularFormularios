@@ -41,3 +41,16 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction/
 
 ## Lazy loading
 ref: https://angular.io/guide/lazy-loading-ngmodules
+
+## FormsModule
+    Para el uso de template
+    Con ngForm se envia todo del formulario
+    <form (ngSubmit)="save( myForm )" #myForm="ngForm"></form>
+
+    Para tomar datos se requiere indicarlo a angular con  <strong>ngModel name=""</strong>
+
+    <input  type="text"
+            class="form-control"
+            ngModel
+            name="producto"
+            placeholder="Nombre del producto">
