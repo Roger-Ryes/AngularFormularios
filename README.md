@@ -64,9 +64,9 @@ ref: https://angular.io/guide/lazy-loading-ngmodules
                 class="form-text text-danger">
     Debe de ser de tres letras</span>
 
-## ViewChild
+# ViewChild
     Toma un elemento del local
-   # TS
+   ### TS
     @ViewChild("myForm") myForm!:NgForm;
-   # HTML
+   ### HTML
     <form (ngSubmit)="save()" #myForm="ngForm">
