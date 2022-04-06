@@ -2,7 +2,7 @@
 <hr>
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="save( myForm )" #myForm="ngForm">
+        <form (ngSubmit)="save()" #myForm="ngForm">
 
             <!-- Campo de producto -->
             <div class="mb-3 row">
@@ -17,8 +17,7 @@
 
                             minlength="3"
                             required>
-                    <span *ngIf="myForm.controls['producto']?.invalid &&
-                                 myForm.controls['producto']?.touched" 
+                    <span *ngIf="productValidate()" 
                           class="form-text text-danger">
                           Debe de ser de tres letras</span>
                 </div>

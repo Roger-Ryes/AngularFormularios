@@ -63,3 +63,10 @@ El signo de interrogacion (?) indica que si el valor existe, si no, esperar a qu
              myForm.controls['producto']?.touched" 
             class="form-text text-danger">
 Debe de ser de tres letras</span>
+
+## ViewChild
+Toma un elemento del local
+<h3>TS</h3>
+ @ViewChild("myForm") myForm!:NgForm;
+<h3>HTML</h3>
+<form (ngSubmit)="save()" #myForm="ngForm">

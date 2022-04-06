@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,15 +7,16 @@ import { NgForm } from '@angular/forms';
   styles: [
   ]
 })
-export class BasicComponent implements OnInit {
+export class BasicComponent {
 
-  constructor() { }
+  @ViewChild("myForm") myForm!:NgForm;
 
-  ngOnInit(): void {
+  productValidate():boolean{
+    return this.myForm?.controls['producto']?.invalid && this.myForm?.controls['producto']?.touched
   }
 
-  save(myForm:NgForm){
-    console.log( myForm );
+  save(){
+    console.log( this.myForm );
   }
 
 }
