@@ -25,24 +25,25 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#
+#
+<h1> AngularFormularios</h1>
 
-# AngularFormularios
-
-## Link a usar
+# Link a usar
 https://getbootstrap.com/docs/5.1/getting-started/introduction/
 
-## Comandos usados
-# Generar Modulo
+# Comandos usados
+## Generar Modulo
     ng g m share  
-# Generar Componente
+## Generar Componente
     ng g c share/sidemenu --skipTests -is
-# Generar Modulo y Routing
+## Generar Modulo y Routing
     ng g m template --routing
 
-## Lazy loading
+# Lazy loading
 ref: https://angular.io/guide/lazy-loading-ngmodules
 
-## FormsModule
+# FormsModule
     Para el uso de template
     Con ngForm se envia todo del formulario
     <form (ngSubmit)="save( myForm )" #myForm="ngForm"></form>
@@ -55,7 +56,7 @@ ref: https://angular.io/guide/lazy-loading-ngmodules
             name="producto"
             placeholder="Nombre del producto">
 
-## Condicionales en Formularios
+# Condicionales en Formularios
 
     El signo de interrogacion (?) indica que si el valor existe, si no, esperar a que exista
 
