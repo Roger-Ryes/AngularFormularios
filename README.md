@@ -33,11 +33,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 https://getbootstrap.com/docs/5.1/getting-started/introduction/
 
 # Comandos usados
-## Generar Modulo
+### Generar Modulo
     ng g m share  
-## Generar Componente
+### Generar Componente
     ng g c share/sidemenu --skipTests -is
-## Generar Modulo y Routing
+### Generar Modulo y Routing
     ng g m template --routing
 
 # Lazy loading
