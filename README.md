@@ -66,7 +66,7 @@ ref: https://angular.io/guide/lazy-loading-ngmodules
 
 ## ViewChild
     Toma un elemento del local
-    <h3>TS</h3>
+<h3>TS</h3>
     @ViewChild("myForm") myForm!:NgForm;
-    <h3>HTML</h3>
+<h3>HTML</h3>
     <form (ngSubmit)="save()" #myForm="ngForm">
