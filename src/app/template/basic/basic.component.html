@@ -10,7 +10,7 @@
                 <div class="col-sm-9">
                     <input  type="text"
                             class="form-control"
-                            ngModel
+                            [ngModel] = "initForm.producto"
                             name="producto"
                             placeholder="Nombre del producto"
                             autocomplete="off"
@@ -30,7 +30,7 @@
                 <div class="col-sm-9">
                     <input  type="number"
                             class="form-control"
-                            ngModel
+                            [ngModel]="initForm.precio"
                             name="precio"
                             placeholder="Precio del producto"
 
@@ -49,7 +49,7 @@
                 <div class="col-sm-9">
                     <input  type="number"
                             class="form-control"
-                            ngModel
+                            [ngModel] = "initForm.existencia"
                             name="existencia"
                             placeholder="Existencias del producto"
                             

@@ -8,6 +8,13 @@ import { NgForm } from '@angular/forms';
   ]
 })
 export class BasicComponent {
+  
+  // Iniciar formulario con valores
+  initForm={
+    producto: "RTX",
+    precio: 10,
+    existencia: 10
+  }
 
   @ViewChild("myForm") myForm!:NgForm;
 
@@ -22,7 +29,11 @@ export class BasicComponent {
   }
 
   save(){
-    console.log( this.myForm );
+    // console.log( this.myForm );
+    this.myForm.resetForm({
+      precio: 0,
+      existencia: 0
+    }); // Reseteo Form y inicializo con valores 
   }
 
 }
