@@ -8,7 +8,7 @@
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
             <input  class="form-control"
-                    ngModel
+                    [ngModel]="persona.nombre"
                     name="name"
                     placeholder="Nombre de la persona"
                     required>
@@ -35,11 +35,12 @@
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">favorito</label>
         <div class="col-sm-9">
-            <input  class="form-control mb-1">
-            <input  class="form-control mb-1">
-            <input  class="form-control mb-1">
-            <input  class="form-control mb-1">
-            <input  class="form-control mb-1">
+            <input *ngFor="let favorite of persona.favoritos; let i = index" 
+                    class="form-control mb-1"
+                    [(ngModel)]="favorite.nombre"
+                    name="favorite_{{i}}"
+                    required>
+            
         </div>
     </div>
 
@@ -51,7 +52,7 @@
                     class="btn btn-primary float-end"
                     (click)="guardar()"
 
-                    [disabled]="enable()">
+                    [disabled]="dataForm.invalid">
                 Guardar
             </button>
         </div>
@@ -61,8 +62,11 @@
 
 <div class="row">
     <div class="column">
+        <span>persona</span> 
+        <pre>{{ persona | json }}</pre>
+
         <span>invalid</span> 
-        <pre>{{ dataForm.invalid }}</pre>
+        <pre>{{ dataForm.valid }}</pre>
        
         <span>touched</span> 
         <pre>{{ dataForm.touched }}</pre>
