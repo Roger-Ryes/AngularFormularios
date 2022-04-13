@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 interface Persona{
@@ -17,7 +17,7 @@ interface Favorito{
   styles: [
   ]
 })
-export class DinamicsComponent implements OnInit {
+export class DinamicsComponent {
 
   @ViewChild("dataForm") dataForm!: NgForm;
 
@@ -28,21 +28,20 @@ export class DinamicsComponent implements OnInit {
       {id: 2, nombre: "Minecraft"}
     ]
   }
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  
   guardar(){
     console.log("formulario");
     console.log(this.dataForm);
   }
   // textEnable():boolean{
   //   return this.dataForm?.touched==true;
-  // }
-  
+  // }  
 
   enable():boolean{
     return this.dataForm?.invalid==true;
+  }
+
+  deleteFavorite(index: number){
+    this.persona.favoritos.splice(index, 1);
   }
 }
