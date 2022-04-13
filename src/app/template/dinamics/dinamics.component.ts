@@ -18,6 +18,8 @@ interface Favorito{
   ]
 })
 export class DinamicsComponent {
+  
+  favorite: string = "";
 
   @ViewChild("dataForm") dataForm!: NgForm;
 
@@ -39,6 +41,15 @@ export class DinamicsComponent {
 
   enable():boolean{
     return this.dataForm?.invalid==true;
+  }
+
+  addFavorite(){
+    const newFavorite: Favorito = {
+      id:this.persona.favoritos.length+1,
+      nombre: this.favorite
+    }
+    this.persona.favoritos.push({ ...newFavorite });
+    this.favorite="";
   }
 
   deleteFavorite(index: number){

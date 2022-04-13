@@ -24,9 +24,13 @@
         <div class="col-sm-9">
             <div class="input-group mb-3">
                 <input  class="form-control"
-                        placeholder="Agregar favorito">
+                        [(ngModel)]="favorite"
+                        name="gameFavorite"
+                        placeholder="Agregar favorito"
+                        (keydown.enter)="addFavorite()">
                 <button class="btn btn-outline-secondary" 
-                        type="button">Button</button>
+                        type="button"
+                        (click)="addFavorite()">Agregar</button>
             </div>
         </div>
     </div>
