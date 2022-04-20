@@ -22,7 +22,6 @@ export class BasicComponent implements OnInit{
   })
 
   constructor( private fb: FormBuilder ) {
-    console.log(this.myForm);
   }
 
   ngOnInit(): void {

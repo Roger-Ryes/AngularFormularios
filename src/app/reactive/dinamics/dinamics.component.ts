@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamics',
@@ -7,10 +8,33 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class DinamicsComponent implements OnInit {
-
-  constructor() { }
+  
+  dataForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    favorites: this.fb.array([
+      ["Metal Gear"],
+      ["Deatpool"]
+    ], Validators.required)
+  })
+  
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
+  save(){
+    if(this.dataForm.invalid){
+      return;
+    }
+    console.log(this.dataForm);
+  }
+
+  validateCondition(state: string): Boolean | null{
+    return this.dataForm.controls[state].errors && this.dataForm.controls[state].touched;
+  }
+
+  get favoritesArr(){
+    return this.dataForm.get("favorites") as FormArray;
+    //dataForm.controls['favorites'].value
+  }
 }
