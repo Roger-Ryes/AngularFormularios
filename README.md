@@ -43,55 +43,5 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction/
 # Lazy loading
 ref: https://angular.io/guide/lazy-loading-ngmodules
 
-# FormsModule
-    Para el uso de template
-    Con ngForm se envia todo del formulario
-    <form (ngSubmit)="save( myForm )" #myForm="ngForm"></form>
-
-    Para tomar datos se requiere indicarlo a angular con  <strong>ngModel name=""</strong>
-
-    <input  type="text"
-            class="form-control"
-            ngModel
-            name="producto"
-            placeholder="Nombre del producto">
-
-# Condicionales en Formularios
-
-    El signo de interrogacion (?) indica que si el valor existe, si no, esperar a que exista
-
-    <span *ngIf="myForm.controls['producto']?.invalid &&
-                myForm.controls['producto']?.touched" 
-                class="form-text text-danger">
-    Debe de ser de tres letras</span>
-
-# ViewChild
-    Toma un elemento del local
-   ### TS
-    @ViewChild("myForm") myForm!:NgForm;
-   ### HTML
-    <form (ngSubmit)="save()" #myForm="ngForm">
-
-# Directives
-Son una serie de elementos que aplicaremos a nuestro código HTML como si de un atributo se tratara con el fin de añadir una nueva funcionalidad a las etiquetas HTML.
-Ejm:
-### TS
-    @Directive({
-        selector: '[customMin][ngModel]' //Indica que debe tener para que funcione nuestra directiva  
-    })
-    export class CustomMinDirective{
-        @Input() minimo!:number;
-
-        constructor(){
-            console.log("customMin:"+ this.minimo)
-        }
-
-    }
-### HTML
-    <input  type="number"
-            class="form-control"
-            ngModel
-            name="existencia"
-            customMin
-            [minimo]=0
-            placeholder="Existencias del producto">
+# Formularios Reactivos
+La logica es mantener el html, lo mas sencillo posible, y hacer todo en el TS
