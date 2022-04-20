@@ -14,7 +14,8 @@
                             placeholder="Nombre del producto"
                             autocomplete="off">
 
-                    <span class="form-text text-danger">
+                    <span   class="form-text text-danger"
+                            *ngIf="campValid('name')">
                           Debe de ser de tres letras</span>
                 </div>
             </div>
@@ -28,8 +29,9 @@
                             class="form-control"
                             formControlName="price"
                             placeholder="Precio del producto">
-                    <span class="form-text text-danger">
-                    El precio debe ser 0 o mayor</span>
+                    <span   class="form-text text-danger"
+                            *ngIf="campValid('price')">
+                            El precio debe ser 0 o mayor</span>
                 </div>
             </div>
             
@@ -42,6 +44,9 @@
                             class="form-control"
                             formControlName="existence"
                             placeholder="Existencias del producto">
+                    <span   class="form-text text-danger"
+                            *ngIf="campValid('existence')">
+                            La existencia debe ser 0 o mayor</span>
                 </div>
             </div>
 

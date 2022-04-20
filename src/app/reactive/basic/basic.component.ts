@@ -16,11 +16,18 @@ export class BasicComponent {
   // });
 
   myForm: FormGroup = this.fb.group({
-    name:['RTX', [Validators.required, Validators.minLength(3)]], // ,Validador sincrono , Validador asincrono
-    price: [0, [Validators.min(0), Validators.required]],
-    existence: [0, [Validators.min(0), Validators.required]]
+    name:[ '', [Validators.required, Validators.minLength(3)]], // ,Validador sincrono , Validador asincrono
+    price: [ 0, [Validators.min(0), Validators.required]],
+    existence: [ 0, [Validators.min(0), Validators.required]]
   })
 
-  constructor( private fb: FormBuilder ) { }
+  constructor( private fb: FormBuilder ) {
+    console.log(this.myForm);
+  }
+
+  campValid( campo: string ): Boolean|null {
+    return  this.myForm.controls[campo].errors 
+            && this.myForm.controls[campo].touched;
+  }
 
 }
