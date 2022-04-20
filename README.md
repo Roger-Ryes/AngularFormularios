@@ -45,3 +45,30 @@ ref: https://angular.io/guide/lazy-loading-ngmodules
 
 # Formularios Reactivos
 La logica es mantener el html, lo mas sencillo posible, y hacer todo en el TS
+
+Para usarlo importar "ReactiveFormsModule"
+
+## Importar ReactiveFormsModule
+En el archivo NAME.module.ts, se debe importar "ReactiveFormsModule"
+
+    import { ReactiveFormsModule } from '@angular/forms';
+    imports: [
+        ReactiveFormsModule
+    ]
+
+En el component.ts
+
+    export class BasicComponent {
+    // Asignacion de atributos en formulario
+    myForm: FormGroup = new FormGroup({
+        'name': new FormControl('RTX'),
+    });
+
+    }
+
+Y en el component.html
+
+    <form [formGroup]="myForm"> 
+    <input  type="text"
+    class="form-control"
+    formControlName="name"> <!--Asignacion de nombre dependiendo del FormGroup-->
