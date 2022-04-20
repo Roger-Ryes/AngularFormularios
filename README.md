@@ -92,3 +92,14 @@ Y en el component.html
     <input  type="text"
     class="form-control"
     formControlName="name"> <!--Asignacion de nombre dependiendo del FormGroup-->
+
+## Validators Basicos
+Con FormBuilder, se puede agregar validaciones sincronos
+
+    // ['name', [validators synchronous], [validators asynchronous]]
+    
+    myForm: FormGroup = this.fb.group({
+        name:['RTX', [Validators.required, Validators.minLength(3)]], // ,Validador sincrono , Validador asincrono
+        price: [0, [Validators.min(0), Validators.required]],
+        existence: [0, [Validators.min(0), Validators.required]]
+    })
