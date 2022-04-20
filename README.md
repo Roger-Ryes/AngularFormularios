@@ -103,3 +103,25 @@ Con FormBuilder, se puede agregar validaciones sincronos
         price: [0, [Validators.min(0), Validators.required]],
         existence: [0, [Validators.min(0), Validators.required]]
     })
+
+## Submit en form
+    
+    // Marca como si todos los elementos han sido tocados
+    this.myForm.markAllAsTouched();
+
+    // Resetea todo el formulario
+    this.myForm.reset();
+
+    // Establecemos un valor al formulario
+    this.myForm.setValue({
+      name: "Procesador i9",
+      price: 1500,
+      existence: 50
+    });
+
+    // Resetea y establesco datos, util en inicializar datos por defecto
+    this.myForm.reset({
+      name: "Procesador i9",
+      price: 1500,
+      existence: 50
+    });

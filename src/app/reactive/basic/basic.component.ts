@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styles: [
   ]
 })
-export class BasicComponent {
+export class BasicComponent implements OnInit{
 
   // myForm: FormGroup = new FormGroup({
   //   'name': new FormControl('RTX'),
@@ -16,13 +16,21 @@ export class BasicComponent {
   // });
 
   myForm: FormGroup = this.fb.group({
-    name:[ '', [Validators.required, Validators.minLength(3)]], // ,Validador sincrono , Validador asincrono
-    price: [ 0, [Validators.min(0), Validators.required]],
-    existence: [ 0, [Validators.min(0), Validators.required]]
+    name:[ , [Validators.required, Validators.minLength(3)]], // ,Validador sincrono , Validador asincrono
+    price: [ , [Validators.min(0), Validators.required]],
+    existence: [ , [Validators.min(0), Validators.required]]
   })
 
   constructor( private fb: FormBuilder ) {
     console.log(this.myForm);
+  }
+
+  ngOnInit(): void {
+    this.myForm.reset({
+      name: "Procesador i9",
+      price: 1500,
+      existence: 50
+    });
   }
 
   campValid( campo: string ): Boolean|null {
@@ -30,4 +38,12 @@ export class BasicComponent {
             && this.myForm.controls[campo].touched;
   }
 
+  save(){
+    if( this.myForm.invalid ){
+      this.myForm.markAllAsTouched();
+      return;
+    }
+    console.log(this.myForm.value);
+    this.myForm.reset();
+  }
 }
