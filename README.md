@@ -72,3 +72,23 @@ Y en el component.html
     <input  type="text"
     class="form-control"
     formControlName="name"> <!--Asignacion de nombre dependiendo del FormGroup-->
+
+## FormBuilder 
+Es un servicio, y es similar a formGroup pero es mas sencillo de mantener y leerlo
+
+En el component.ts
+
+    myForm: FormGroup = this.fb.group({
+        name:['RTX'],
+        price: [0],
+        existence: [0]
+    })
+
+    constructor( private fb: FormBuilder ) { }
+
+Y en el component.html
+
+    <form [formGroup]="myForm"> 
+    <input  type="text"
+    class="form-control"
+    formControlName="name"> <!--Asignacion de nombre dependiendo del FormGroup-->
