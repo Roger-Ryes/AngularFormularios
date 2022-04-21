@@ -21,7 +21,6 @@ export class DinamicsComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder) { }
-
   ngOnInit(): void {
   }
 
@@ -48,5 +47,9 @@ export class DinamicsComponent implements OnInit {
     // this.favoritesArr.push( this.fb.control(this.addFavorite.value, Validators.required) );
     this.favoritesArr.push( new FormControl(this.addFavorite.value, Validators.required) );
     this.addFavorite.reset();
+  }
+
+  deleteElementFavorite( i: number){
+    this.favoritesArr.removeAt(i);
   }
 }

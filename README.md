@@ -143,3 +143,16 @@ En html
 
     <input  class="form-control"
             [formControl]="addFavorite">
+
+## Eliminar elemento de FormArray
+En TS   
+   
+    deleteElementFavorite( i: number){
+        this.favoritesArr.removeAt(i);
+    }
+
+En html
+
+    <button class="btn btn-outline-danger" 
+            type="button"
+            (click)="deleteElementFavorite(i)">Eliminar</button>
