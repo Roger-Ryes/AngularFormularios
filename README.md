@@ -193,3 +193,6 @@ En html
     this.myForm.valueChanges.subscribe(({conditions, ...rest})=>{
       this.person = rest;
     });
+
+## Documentación de formularios reactivos en Angular
+https://angular.io/guide/reactive-forms
