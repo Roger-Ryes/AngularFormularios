@@ -156,3 +156,11 @@ En html
     <button class="btn btn-outline-danger" 
             type="button"
             (click)="deleteElementFavorite(i)">Eliminar</button>
+
+### Establecer mas valores en reset
+  
+    person={
+        gender: "F",
+        notification: true
+    }
+    this.myForm.reset({...this.person, conditions: true});
