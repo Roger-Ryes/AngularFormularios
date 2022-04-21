@@ -23,11 +23,12 @@
         <div class="col-sm-9">
             <div class="input-group mb-3">
                 <input  class="form-control"
+                        [formControl]="addFavorite"
                         placeholder="Agregar favorito"
-                        (keydown.enter)="1">
+                        (keydown.enter)="addNewFavorite()">
                 <button class="btn btn-outline-secondary" 
                         type="button"
-                        (click)="1">Agregar</button>
+                        (click)="addNewFavorite()">Agregar</button>
             </div>
         </div>
     </div>
@@ -76,5 +77,11 @@
         
         <span>Value</span> 
         <pre>{{ dataForm.value | json }}</pre>
+        
+        <span>addFavorite</span> 
+        <pre>{{ addFavorite.value| json }}</pre>
+        
+        <span>addFavorite</span> 
+        <pre>{{ addFavorite.valid| json }}</pre>
     </div>
 </div>

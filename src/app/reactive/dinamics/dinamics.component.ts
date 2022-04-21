@@ -17,6 +17,9 @@ export class DinamicsComponent implements OnInit {
     ], Validators.required)
   })
   
+  addFavorite: FormControl = this.fb.control("", Validators.required);
+
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -36,5 +39,14 @@ export class DinamicsComponent implements OnInit {
   get favoritesArr(){
     return this.dataForm.get("favorites") as FormArray;
     //dataForm.controls['favorites'].value
+  }
+
+  addNewFavorite(){
+    if(this.addFavorite.invalid) 
+      return;
+    
+    // this.favoritesArr.push( this.fb.control(this.addFavorite.value, Validators.required) );
+    this.favoritesArr.push( new FormControl(this.addFavorite.value, Validators.required) );
+    this.addFavorite.reset();
   }
 }

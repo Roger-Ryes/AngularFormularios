@@ -125,3 +125,21 @@ Con FormBuilder, se puede agregar validaciones sincronos
       price: 1500,
       existence: 50
     });
+
+## Agregar controles al FormArray
+En TS
+
+    // inicializar quien tomara los valores
+    addFavorite: FormControl = this.fb.control("", Validators.required);
+
+
+    // Metodo 1: Guardar datos en FormArray desde FormControl 
+    this.favoritesArr.push( this.fb.control(this.addFavorite.value, Validators.required) );
+    
+    // Metodo 2: Guardar datos en FormArray desde FormControl
+    this.favoritesArr.push( new FormControl(this.addFavorite.value, Validators.required) );
+    
+En html
+
+    <input  class="form-control"
+            [formControl]="addFavorite">
