@@ -164,3 +164,32 @@ En html
         notification: true
     }
     this.myForm.reset({...this.person, conditions: true});
+
+## Actualizacion de valores
+
+    // Primer metodo
+    person={
+        gender: "F",
+        notification: true
+    }
+
+    save(){
+        const formValue = {...this.myForm.value};
+        delete formValue.conditions;
+        this.person = formValue;
+    }
+
+### valueChanges
+
+    // Segundo metodo
+     ngOnInit(): void {
+        this.myForm.valueChanges.subscribe(form=>{
+        delete form.conditions;
+        this.person = form;
+        });
+    }
+
+    // Desestructuracion (Igual al anterior)
+    this.myForm.valueChanges.subscribe(({conditions, ...rest})=>{
+      this.person = rest;
+    });
