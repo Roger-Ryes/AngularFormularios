@@ -74,3 +74,31 @@ El validador se utiliza en la seccion de validadores de formBuilder
 
 ### validate.servie.ts y validations.ts, cumplen la misma funcion en registro.component.ts
 Se opto por usar servicios
+
+## AbstractControlOptions
+
+    myForm: FormGroup = this.fb.group({
+        password: ['', [Validators.required, Validators.minLength(6)] ],
+        password2: ['', [Validators.required] ]
+    },{
+        validator: [ this.valSer.campEquals("password", "password2") ]
+    });
+
+
+    // En el servicio
+    campEquals( camp1: string, camp2: string){
+        // Tomamos los balores del FormGroup
+        return (formValue: AbstractControl): ValidationErrors | null =>{
+            const pass1 = formValue.get(camp1)?.value;
+            const pass2 = formValue.get(camp2)?.value;
+            // Se hace la comparacion
+            if(pass1!==pass2){
+                // Establesco error de no iguales en camp2 (password2)
+                formValue.get(camp2)?.setErrors({noIguales: true});
+                return { noIguales: true }
+            }
+            // No establesco error en camp2 (password2)
+            formValue.get(camp2)?.setErrors(null);
+            return null;
+        }
+    }

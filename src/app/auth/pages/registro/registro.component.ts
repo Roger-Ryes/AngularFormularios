@@ -19,7 +19,11 @@ export class RegistroComponent implements OnInit {
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.pattern(this.valSer.nameLastNaPattern)]],
     email: ['', [Validators.required, Validators.pattern(this.valSer.emailPattern)]],
-    username: ['', [Validators.required, this.valSer.notCanBeRoys], ]
+    username: ['', [Validators.required, this.valSer.notCanBeRoys], ],
+    password: ['', [Validators.required, Validators.minLength(6)] ],
+    password2: ['', [Validators.required] ]
+  },{
+    validator: [ this.valSer.campEquals("password", "password2") ]
   });
 
   constructor(
@@ -44,9 +48,7 @@ export class RegistroComponent implements OnInit {
     if(this.myForm.invalid){
       this.myForm.markAllAsTouched()
       return;
-    } 
-
-    
-
+    }    
   }
+
 }
