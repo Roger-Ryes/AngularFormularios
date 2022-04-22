@@ -42,3 +42,32 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction/
 
 <br>
 # Validaciones manuales y asíncronas
+## Validators.pattern con formBuilder
+El validador se utiliza en la seccion de validadores de formBuilder
+
+    // FormGroup
+    myForm: FormGroup = this.fb.group({
+                name: [ '', [ Validators.pattern(this.nameLastNa) ] ]
+            })
+
+    // Validador de Nombre y Apellido
+    nameLastNa: string = "([A-Za-z]+) ([A-Za-z]+)";
+    Validators.pattern(this.nameLastNa)
+
+    // Validador de email
+    email: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+    Validators.pattern(this.email)
+
+    // Validacion personalizado
+        // Nickname no igual a roys | funcion validacion personalizada
+        notCanBeRoys( argument: FormControl ){
+            const value = argument.value?.trim().toLowerCase();
+            if(value=="roys"){
+            return {
+                noRoys: true
+            }
+            }
+            return null;
+        }
+        
+        username: ['', [Validators.required, this.notCanBeRoys], ]
