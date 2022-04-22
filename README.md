@@ -71,3 +71,6 @@ El validador se utiliza en la seccion de validadores de formBuilder
         }
         
         username: ['', [Validators.required, this.notCanBeRoys], ]
+
+### validate.servie.ts y validations.ts, cumplen la misma funcion en registro.component.ts
+Se opto por usar servicios
