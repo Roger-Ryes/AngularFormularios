@@ -48,5 +48,17 @@ export class SidemenuComponent {
     }
   ]
   
+  authMenu: MenuItem[] = [
+    {
+      text: "Login",
+      route: "./auth/login",
+      active: "active"
+    },
+    {
+      text: "Registro",
+      route: "./auth/registro" 
+    }
+  ]
+  
 
 }
