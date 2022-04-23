@@ -37,7 +37,9 @@ export class RegistroComponent implements OnInit {
     this.myForm.reset({
       name:"Roger Reyes",
       email:"test@test.com",
-      username: "RoysCode"
+      username: "RoysCode",
+      password: "123456",
+      password2: "123456"
     });
   }
 

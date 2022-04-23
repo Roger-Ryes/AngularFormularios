@@ -136,3 +136,22 @@ Esta validacion depende de otro servicio por http
 
     // Implementacion en la validacion Asincronas
     email: ['', [Validators.required, Validators.pattern(this.valSer.emailPattern)], [ this.emailValidatirSer]],
+
+### delay
+Agregar un retardo al servicio
+
+    import { map, delay } from 'rxjs/operators';
+
+    return this.http.get<any[]>(`${this.pathUrl}/usuarios?q=${email}`)
+        .pipe(
+            delay(2000), // Agregar un retraso a la validacion
+            map( resp=>{
+            return (resp.length==0)? null : { emailExist: true}
+            })
+        );
+        
+### Estado del Formulario
+    
+    myForm.status  // valid, pendin, invalid
+    myForm.pending // boolean
+
