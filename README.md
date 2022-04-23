@@ -76,6 +76,7 @@ El validador se utiliza en la seccion de validadores de formBuilder
 Se opto por usar servicios
 
 ## AbstractControlOptions
+Comparar dos contraseñas
 
     myForm: FormGroup = this.fb.group({
         password: ['', [Validators.required, Validators.minLength(6)] ],
@@ -102,3 +103,10 @@ Se opto por usar servicios
             return null;
         }
     }
+
+## JSON server
+ref: https://www.npmjs.com/package/json-server
+En esta rama, se utiliza el db.json (09.0.ServicioBackend)
+Start JSON Server
+
+    json-server --watch db.json
