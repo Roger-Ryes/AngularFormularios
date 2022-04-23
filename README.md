@@ -41,6 +41,8 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction/
     ng g m template --routing
 
 <br>
+
+
 # Validaciones manuales y asíncronas
 ## Validators.pattern con formBuilder
 El validador se utiliza en la seccion de validadores de formBuilder
