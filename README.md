@@ -40,160 +40,81 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction/
 ### Generar Modulo y Routing
     ng g m template --routing
 
-# Lazy loading
-ref: https://angular.io/guide/lazy-loading-ngmodules
+<br>
 
-# Formularios Reactivos
-La logica es mantener el html, lo mas sencillo posible, y hacer todo en el TS
 
-Para usarlo importar "ReactiveFormsModule"
+# Validaciones manuales y asíncronas
+## Validators.pattern con formBuilder
+El validador se utiliza en la seccion de validadores de formBuilder
 
-## Importar ReactiveFormsModule
-En el archivo NAME.module.ts, se debe importar "ReactiveFormsModule"
+    // FormGroup
+    myForm: FormGroup = this.fb.group({
+                name: [ '', [ Validators.pattern(this.nameLastNa) ] ]
+            })
 
-    import { ReactiveFormsModule } from '@angular/forms';
-    imports: [
-        ReactiveFormsModule
-    ]
+    // Validador de Nombre y Apellido
+    nameLastNa: string = "([A-Za-z]+) ([A-Za-z]+)";
+    Validators.pattern(this.nameLastNa)
 
-En el component.ts
+    // Validador de email
+    email: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+    Validators.pattern(this.email)
 
-    export class BasicComponent {
-    // Asignacion de atributos en formulario
-    myForm: FormGroup = new FormGroup({
-        'name': new FormControl('RTX'),
-    });
+    // Validacion personalizado
+        // Nickname no igual a roys | funcion validacion personalizada
+        notCanBeRoys( argument: FormControl ){
+            const value = argument.value?.trim().toLowerCase();
+            if(value=="roys"){
+            return {
+                noRoys: true
+            }
+            }
+            return null;
+        }
+        
+        username: ['', [Validators.required, this.notCanBeRoys], ]
 
-    }
+### validate.servie.ts y validations.ts, cumplen la misma funcion en registro.component.ts
+Se opto por usar servicios
 
-Y en el component.html
-
-    <form [formGroup]="myForm"> 
-    <input  type="text"
-    class="form-control"
-    formControlName="name"> <!--Asignacion de nombre dependiendo del FormGroup-->
-
-## FormBuilder 
-Es un servicio, y es similar a formGroup pero es mas sencillo de mantener y leerlo
-
-En el component.ts
+## AbstractControlOptions
+Comparar dos contraseñas
 
     myForm: FormGroup = this.fb.group({
-        name:['RTX'],
-        price: [0],
-        existence: [0]
-    })
-
-    constructor( private fb: FormBuilder ) { }
-
-Y en el component.html
-
-    <form [formGroup]="myForm"> 
-    <input  type="text"
-    class="form-control"
-    formControlName="name"> <!--Asignacion de nombre dependiendo del FormGroup-->
-
-## Validators Basicos
-Con FormBuilder, se puede agregar validaciones sincronos
-
-    // ['name', [validators synchronous], [validators asynchronous]]
-    
-    myForm: FormGroup = this.fb.group({
-        name:['RTX', [Validators.required, Validators.minLength(3)]], // ,Validador sincrono , Validador asincrono
-        price: [0, [Validators.min(0), Validators.required]],
-        existence: [0, [Validators.min(0), Validators.required]]
-    })
-
-## Submit en form
-    
-    // Marca como si todos los elementos han sido tocados
-    this.myForm.markAllAsTouched();
-
-    // Resetea todo el formulario
-    this.myForm.reset();
-
-    // Establecemos un valor al formulario
-    this.myForm.setValue({
-      name: "Procesador i9",
-      price: 1500,
-      existence: 50
+        password: ['', [Validators.required, Validators.minLength(6)] ],
+        password2: ['', [Validators.required] ]
+    },{
+        validator: [ this.valSer.campEquals("password", "password2") ]
     });
 
-    // Resetea y establesco datos, util en inicializar datos por defecto
-    this.myForm.reset({
-      name: "Procesador i9",
-      price: 1500,
-      existence: 50
-    });
 
-## Agregar controles al FormArray
-En TS
-
-    // inicializar quien tomara los valores
-    addFavorite: FormControl = this.fb.control("", Validators.required);
-
-
-    // Metodo 1: Guardar datos en FormArray desde FormControl 
-    this.favoritesArr.push( this.fb.control(this.addFavorite.value, Validators.required) );
-    
-    // Metodo 2: Guardar datos en FormArray desde FormControl
-    this.favoritesArr.push( new FormControl(this.addFavorite.value, Validators.required) );
-    
-En html
-
-    <input  class="form-control"
-            [formControl]="addFavorite">
-
-## Eliminar elemento de FormArray
-En TS   
-   
-    deleteElementFavorite( i: number){
-        this.favoritesArr.removeAt(i);
+    // En el servicio
+    campEquals( camp1: string, camp2: string){
+        // Tomamos los balores del FormGroup
+        return (formValue: AbstractControl): ValidationErrors | null =>{
+            const pass1 = formValue.get(camp1)?.value;
+            const pass2 = formValue.get(camp2)?.value;
+            // Se hace la comparacion
+            if(pass1!==pass2){
+                // Establesco error de no iguales en camp2 (password2)
+                formValue.get(camp2)?.setErrors({noIguales: true});
+                return { noIguales: true }
+            }
+            // No establesco error en camp2 (password2)
+            formValue.get(camp2)?.setErrors(null);
+            return null;
+        }
     }
 
-En html
+## JSON server
+ref: https://www.npmjs.com/package/json-server
+En esta rama, se utiliza el db.json (09.0.ServicioBackend)
+Start JSON Server
 
-    <button class="btn btn-outline-danger" 
-            type="button"
-            (click)="deleteElementFavorite(i)">Eliminar</button>
-
-### Establecer mas valores en reset
-  
-    person={
-        gender: "F",
-        notification: true
-    }
-    this.myForm.reset({...this.person, conditions: true});
-
-## Actualizacion de valores
-
-    // Primer metodo
-    person={
-        gender: "F",
-        notification: true
-    }
-
-    save(){
-        const formValue = {...this.myForm.value};
-        delete formValue.conditions;
-        this.person = formValue;
-    }
-
-### valueChanges
-
-    // Segundo metodo
-     ngOnInit(): void {
-        this.myForm.valueChanges.subscribe(form=>{
-        delete form.conditions;
-        this.person = form;
-        });
-    }
-
-    // Desestructuracion (Igual al anterior)
-    this.myForm.valueChanges.subscribe(({conditions, ...rest})=>{
-      this.person = rest;
-    });
-
+<<<<<<< HEAD
 ## Documentación de formularios reactivos en Angular
 
 https://angular.io/guide/reactive-forms
+=======
+    json-server --watch db.json
+>>>>>>> 90d92af252b769e08d2f2125bfa9ecc6e26aafd7
