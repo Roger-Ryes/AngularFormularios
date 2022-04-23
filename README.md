@@ -112,3 +112,27 @@ En esta rama, se utiliza el db.json (09.0.ServicioBackend)
 Start JSON Server
 
     json-server --watch db.json
+
+## Validaciones Asincronas
+En un servicio, se importa la interface "AsyncValidator",
+Esta validacion depende de otro servicio por http
+
+    // Codigo en Servicio
+    private pathUrl: string = "http://localhost:3000";
+  
+    constructor(private http: HttpClient) { }
+    
+
+    validate(control: AbstractControl): Observable<ValidationErrors | null> {
+        const email = control.value;
+        return  this.http.get<any[]>(`${this.pathUrl}/usuarios?q=${email}`)
+                .pipe(
+                map( resp=>{
+                    return (resp.length==0)? null : { emailExist: true}
+                })
+                );
+    }
+
+
+    // Implementacion en la validacion Asincronas
+    email: ['', [Validators.required, Validators.pattern(this.valSer.emailPattern)], [ this.emailValidatirSer]],
